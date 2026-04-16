@@ -1,5 +1,7 @@
 # Shriguru Petrol Pump Management & Booking System
 
+![Project Preview](project-preview.png)
+
 A modern, digitized fuel station management platform built with React, Spring Boot, and MySQL.
 
 ## 🚀 Getting Started
