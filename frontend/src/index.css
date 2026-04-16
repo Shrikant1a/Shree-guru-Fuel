@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  
+  --color-primary-light: #ffeb3b;
+  --color-primary: #FFD100; /* Official BPCL Yellow */
+  --color-primary-dark: #c6a700;
+  
+  --color-secondary-light: #337ab7;
+  --color-secondary: #0055A5; /* Official BPCL Royal Blue */
+  --color-secondary-dark: #003a70;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --background: #0f172a;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+    color: white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-slate-900 font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-dark text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-secondary/20 cursor-pointer;
+  }
+}
+
+/* Custom Utilities */
+.bg-mesh {
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(220, 100%, 50%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(45, 100%, 50%, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+@layer utilities {
+  .responsive-table {
+    @apply w-full overflow-x-auto block md:table;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@media print {
+  @page { 
+    margin: 0; 
+    size: auto;
+  }
+  
+  /* Hide the entire website by targeting top-level body elements */
+  body > *:not(.receipt-modal-container) {
+    display: none !important;
+  }
+
+  /* The Receipt Portal Container */
+  .receipt-modal-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    background: white !important;
+    opacity: 1 !important;
+    z-index: 99999 !important;
+  }
+
+  /* Ensure the printed receipt is high contrast and centered */
+  .print-receipt {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    margin: 0 !important; /* Managed by parent flex */
+    width: 400px !important;
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .print-receipt * {
+    visibility: visible !important;
+    color: black !important;
+    opacity: 1 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Force background colors for the BPCL yellow parts */
+  .print-receipt .bg-primary {
+    background-color: #FFD100 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
