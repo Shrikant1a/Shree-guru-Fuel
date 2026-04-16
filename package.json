@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Root management for Shriguru Petrol Pump System",
   "scripts": {
-    "frontend-install": "cd frontend && npm install",
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
     "frontend-dev": "cd frontend && npm run dev",
     "backend-run": "cd backend && mvn spring-boot:run",
     "dev": "npm run frontend-dev"
